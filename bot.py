@@ -38,21 +38,11 @@ async def on_message(message):
         channel = message.channel
         sender = message.author
         guild = channel.guild
-        if command == "kill":
-            if arguments == "" or "me":
-                await channel.send("```You died!```")
-            elif arguments.count("and") > 0:
-                await channel.send(f"```{arguments} have died!```")
-            else:
-                await channel.send(f"```{arguments} has died!```")
-        elif command == "myfriends":
+        if command == "myfriends":
             friendList = servers[guild.id].listFriends(sender)
             if friendList == "":
                 friendList = "You have no friends right now.\nTalk to people to make friends with them!"
             await channel.send(friendList)
-        elif command == "save":
-            servers[guild.id].saveFriends()
-            await channel.send("saved!")
         elif command in ["fp", "friendshipwith", "friendshiplevel", "friendshippoints"]:
             if arguments == "all":
                 hasFriends = False
